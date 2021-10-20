@@ -10,7 +10,7 @@ export async function fetchData() {
 export function* workerLoadData() {
     const data: [] = yield call(fetchData);
 
-    yield put(putData(data));
+    yield put(putData(data.slice(0, 12)));
 };
 
 export function* watchLoadData() {

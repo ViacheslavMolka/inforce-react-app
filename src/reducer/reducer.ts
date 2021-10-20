@@ -20,21 +20,15 @@ export default function reducer (state = initialState, action: any) {
     }
 
   case SORT_BY_COUNT:
-    const byCountField = (field: any) => {
-      return (a: any, b: any) => a[field] > b[field] ? 1 : -1;
-    }
-    const sortCountArray = [...state.data.sort(byCountField('ebc'))];
+    const sortCountArray = state.data.map(item => item);
     return {
-      data: sortCountArray
+      data: sortCountArray.sort((a, b) => b['ebc'] > a['ebc'] ? 1 : -1)
     }
 
   case SORT_BY_NAME:
-    const byNameField = (field: any) => {
-      return (a: any, b: any) => a[field] > b[field] ? 1 : -1;
-    }
-    const sortNameArray = [...state.data.sort(byNameField('name'))];
+    const sortNameArray = state.data.map(item => item);
     return {
-      data: sortNameArray
+      data: sortNameArray.sort((a, b) => a['name'] > b['name'] ? 1 : -1)
     }
 
   default:
